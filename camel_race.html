@@ -32,7 +32,7 @@
           </thead>
           <tbody>
             <tr id="player_1">
-              <td></td>
+              <td><span class="glyphicon glyphicon-hand-right"></span></td>
               <td></td>
               <td></td>
               <td></td>
@@ -43,7 +43,7 @@
               <td></td>
             </tr>
             <tr id="player_2">
-              <td></td>
+              <td><span class="glyphicon glyphicon-hand-right"></span></td>
               <td></td>
               <td></td>
               <td></td>
@@ -60,8 +60,15 @@
     </div>
     <div class="row" style="margin-top: 16px">
       <div class="col-md-12">
+        <button id="btn_reset" class="btn btn-default">New game</button>
         <button id="btn_save" class="btn btn-success">Save game</button>
         <button id="btn_load" class="btn btn-danger">Load game</button>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 16px">
+      <div class="col-md-12">
+        <p>Press A for player 1</p>
+        <p>Press L for player 2</p>
       </div>
     </div>
   </div>
@@ -75,15 +82,14 @@
   var player_2 = {
     name: "player_2"
   };
+  var icon = "<span class=\"glyphicon glyphicon-hand-right\"></span>";
 
   function advance(player) {
-    player.score = player.score || 0;
+    player.score = player.score || 1;
     player.positions = document.querySelectorAll("#" + player.name + " td");
     if (player.score < 9) {
-      if (player.score > 0) {
-        player.positions[player.score - 1].innerHTML = "";
-      }
-      player.positions[player.score++].innerHTML = "<span class=\"glyphicon glyphicon-hand-right\"></span>";
+      player.positions[player.score - 1].innerHTML = "";
+      player.positions[player.score++].innerHTML = icon;
     } else {
       alert(player.name + " wins!");
     }
@@ -96,7 +102,7 @@
       for(var i = 0; i < 9; i++) {
         player.positions[i].innerHTML = "";
       }
-      player.positions[player.score++].innerHTML = "<span class=\"glyphicon glyphicon-hand-right\"></span>";
+      player.positions[player.score].innerHTML = icon;
     } else {
       alert(player.name + " wins!");
     }
@@ -129,6 +135,7 @@
 
   var saveButton = document.querySelector("#btn_save");
   var loadButton = document.querySelector("#btn_load");
+  var resetButton = document.querySelector("#btn_reset");
 
   saveButton.addEventListener(
     "click",
@@ -144,6 +151,14 @@
     function() {
       loadPlayer(player_1);
       loadPlayer(player_2);
+    },
+    false);
+
+  resetButton.addEventListener(
+    "click",
+    function() {
+      setScore(player_1,0);
+      setScore(player_2,0);
     },
     false);
 
