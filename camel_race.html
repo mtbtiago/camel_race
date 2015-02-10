@@ -3,68 +3,83 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../../css/jquery/jquery.min.js"></script>
+  <link rel="stylesheet" href="../../css/bootstrap-3.3.2-dist/css/bootstrap.css">
+  <script src="../../css/bootstrap-3.3.2-dist/js/bootstrap.js">
+  </script>
   <title>Example not jquery</title>
 </head>
 
 <body>
-  <pre>
-    <table>
-      <thead>
-        <tr>
-          <th>1</th>
-          <th>2</th>
-          <th>3</th>
-          <th>4</th>
-          <th>5</th>
-          <th>6</th>
-          <th>7</th>
-          <th>8</th>
-          <th>9</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="player_1">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr id="player_2">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </pre>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+       <h1>              
+        <table>
+          <thead>
+            <tr>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+              <th>8</th>
+              <th>9</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="player_1">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="player_2">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </h1>
+      </div>
+    </div>
+  </div>
 
   <script>
-    var player_1 = {name: "player_1"};
-    var player_2 = {name: "player_2"};
+  var player_1 = {
+    name: "player_1"
+  };
+  var player_2 = {
+    name: "player_2"
+  };
 
-    function advance(player) {
-      player.score = player.score || 0;
-      player.positions = document.querySelectorAll("#"+player.name+" td");
-      if (player.score < 9) {
-        if (player.score > 0) {
-          player.positions[player.score-1].innerHTML = "";
-        }
-        player.positions[player.score++].innerHTML = "*";
-      } else {
-        alert(player.name+" wins!");
+  function advance(player) {
+    player.score = player.score || 0;
+    player.positions = document.querySelectorAll("#" + player.name + " td");
+    if (player.score < 9) {
+      if (player.score > 0) {
+        player.positions[player.score - 1].innerHTML = "";
       }
+      player.positions[player.score++].innerHTML = "<span class=\"glyphicon glyphicon-hand-right\"></span>";
+    } else {
+      alert(player.name + " wins!");
     }
+  }
 
   window.addEventListener("keydown", function(event) {
 
