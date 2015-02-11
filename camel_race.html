@@ -102,7 +102,7 @@
       for(var i = 0; i < 9; i++) {
         player.positions[i].innerHTML = "";
       }
-      player.positions[player.score].innerHTML = icon;
+      player.positions[player.score++].innerHTML = icon;
     } else {
       alert(player.name + " wins!");
     }
@@ -157,13 +157,15 @@
   resetButton.addEventListener(
     "click",
     function() {
+      localStorage.removeItem(player_1.name);
+      localStorage.removeItem(player_2.name);
       setScore(player_1,0);
       setScore(player_2,0);
     },
     false);
 
   function savePlayer(player) {
-    localStorage.setItem(player.name, player.score);
+    localStorage.setItem(player.name, player.score-1);
   }
 
   function loadPlayer(player) {
